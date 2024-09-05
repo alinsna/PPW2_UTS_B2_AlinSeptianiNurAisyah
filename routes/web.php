@@ -26,3 +26,9 @@ Route::get('/contact1', function () {
 });
 
 Route::get('/posts', [PostController:: class, 'index']);
+
+use App\Http\Controllers\ProductController;
+
+Route::resource('products', ProductController::class);
+
+Route::get('products/create', [ProductController::class, 'create']);
