@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\BukuController;
+use App\Http\Controllers\PemainMUController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,8 +30,24 @@ Route::get('/contact1', function () {
 
 Route::get('/posts', [PostController:: class, 'index']);
 
-use App\Http\Controllers\ProductController;
-
 Route::resource('products', ProductController::class);
 
 Route::get('products/create', [ProductController::class, 'create']);
+
+Route::resource('buku', BukuController::class);
+
+Route::get('buku/index', [BukuController::class, 'index']);
+
+Route::get('/buku/create', [BukuController::class, 'create'])->name('buku.create');
+
+Route::post('/buku', [BukuController::class, 'store'])->name('buku.store');
+
+Route::delete('/buku/{id}', [BukuController::class, 'destroy'])->name('buku.destroy');
+
+Route::get('/buku/{id}/edit', [BukuController::class, 'edit'])->name('buku.edit');
+
+Route::post('/buku/{id}', [BukuController::class, 'update'])->name('buku.update');
+
+Route::resource('pemainmu', PemainMUController::class);
+
+Route::get('pemainmu/index', [PemainMUController::class, 'index']);
